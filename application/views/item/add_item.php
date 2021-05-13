@@ -16,28 +16,33 @@
 				 </div>
 				 
 				<div class="row">
-					 <div class="col-sm-6"> 
+					 <div class="col-sm-12"> 
 				<form  action ="<?=base_url()?>index.php/adm/add_item" method="post" id="form">
   
 					
   <div class="form-group row">
-    
-    <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="enter Item name" name="item_name" id="itemname">
+                <div class="col-sm-1">
+				  <label><b>Name</b></label>
+				</div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" placeholder="" name="item_name" id="itemname">
     </div>
   </div>
    <div class="form-group row">
-    
-    <div class="col-sm-4">
+    <div class="col-sm-1">
+				  <label>
+				  </label>
+				</div>
+    <div class="col-sm-2">
      <input type="checkbox" id="license" name="license" value="1">
     <b>License</b>
 
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-2">
     <input type="checkbox" id="Insurance" name="Insurance" value="1">
     <b>Insurance</b>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
     <input type="checkbox" id="amc" name="amc" value="1">
     <b>AMC</b>
     </div>

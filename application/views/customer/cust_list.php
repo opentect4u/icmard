@@ -6,7 +6,7 @@
 				 
 				 <div class="titleSec">
             <a href="<?=base_url()?>index.php/adm/add_customer"><button type="button" class="btn btn-primary">Add</button></a>
-				 <h2>Item List</h2>
+				 <h2>Customer List</h2>
                  <span class="confirm-div" style="float:right; color:green;">
             <?php if(null != $this->session->flashdata('msg')) 
                   { echo $this->session->flashdata('msg');};?>
@@ -17,16 +17,15 @@
 				<div class="row">
 					 <div class="col-sm-12"> 
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
+            <thead>
             <tr>
                 <th>No</th>
                 <th>Name</th>
-                <!-- <th>Email</th>
-                <th>Address</th> -->
+                <th>UIN</th>
                 <th>Option</th>
                 </tr>
-        </thead>
-        <tbody>
+				</thead>
+				<tbody>
 
             <?php 
 
@@ -34,11 +33,12 @@
             foreach($customer as $cust) {?>
             <tr>
                 <td><?php echo $i++; ?></td>
-                <td><?php if(isset($cust->item_name)){echo $cust->item_name; }?></td>
+                <td><?php if(isset($cust->cust_name)){echo $cust->cust_name; }?></td>
+				<td><?php if(isset($cust->uin)){echo $cust->uin; }?></td>
                <!--  <td>Edinburgh</td>
                 <td>61</td> -->
-                <td><a href="<?=base_url()?>index.php/adm/edit_item?id=<?php if(isset($cust->id)){echo $cust->id; }?>" data-toggle="tooltip" data-placement="bottom" title="Edit" class="deletCus"><i class="fa fa-edit menu-icon"></i></a>
-                                <a href="<?=base_url()?>index.php/adm/del_item?id=<?php if(isset($cust->id)){echo $cust->id; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
+                <td><a href="<?=base_url()?>index.php/adm/edit_cust?id=<?php if(isset($cust->uin)){echo $cust->uin; }?>" data-toggle="tooltip" data-placement="bottom" title="Edit" class="deletCus"><i class="fa fa-edit menu-icon"></i></a>
+                                <a href="<?=base_url()?>index.php/adm/del_cust?id=<?php if(isset($cust->uin)){echo $cust->uin; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
                 </td>
             </tr>
             
@@ -49,8 +49,8 @@
             <tr>
                 <th>No</th>
                 <th>Name</th>
-               <!--  <th>Email</th>
-                <th>Address</th> -->
+               <th>UIN</th>
+               
                  <th>Option</th>
                 </tr>
         </tfoot>
