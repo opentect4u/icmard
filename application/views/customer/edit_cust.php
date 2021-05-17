@@ -93,7 +93,7 @@
 				  
 	   </div>
    
-    <div class="form-group row" id="prop" style="display:none">
+       <div class="form-group row" id="prop" style="display:none">
 			
 			  <div class="col-sm-1">
 			  <label><b>Propieter name</b></label>
@@ -107,7 +107,7 @@
 			 <div class="col-sm-4">
 			  <input type="text" class="form-control" placeholder="" name="contact_person" id="itemname" value="<?php if(isset($cust->contact_person)){echo $cust->contact_person; }?>">
 			  </div>
-   </div>
+       </div>
     <div class="form-group row">
 			
 			  <div class="col-sm-1">
@@ -191,10 +191,23 @@
 	</div>
 </div>
 	<script>
+					$(document).ready(function() {
+						
+						
+						  var cust_type = '<?php if(isset($cust->cust_type)){echo $cust->cust_type; }?>';
+				
+							if(cust_type == 'C')
+							{
+							
+							$("#prop").hide();
+							}else{
+								
+								$("#prop").show();
+							}
+					});
 
-
-			
-			$("#cust_type").change(function(){
+			 
+			 $("#cust_type").change(function(){
 				
 				var cust_type = $("#cust_type").val();
 				

@@ -36,7 +36,7 @@
 	<div class="float-left navRightSec">
 		
 		<ul class="topDate">
-<li>Branch Name: Head Office</li> <li>KMS Year: 2020-21</li> <li>User: synergic</li> <li>Module: Paddy Procurement</li>
+  <!-- <li>Branch Name: Head Office</li> <li>KMS Year: 2020-21</li> <li>User: synergic</li> <li>Module: Paddy Procurement</li> -->
 </ul>
 <!--
 	<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -54,7 +54,7 @@
 		
 		<ul id="accordion" class="accordion">
 	  <li>
-		<div class="link"><a href="index.html"><i class="fa fa-tachometer"></i>Dashboard</a></div>
+		<div class="link"><a href="<?=base_url()?>index.php/auth/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></div>
 	  </li>
 	  <li>
 		<div class="link"><i class="fa fa-mobile"></i>Master<i class="fa fa-chevron-down"></i></div>
@@ -64,9 +64,9 @@
 		 
 		</ul>
      </li>
-  <li>
+    <!-- <li>
     <div class="link"><a href="publisher_management.html"><i class="fa fa-code"></i>Publisher Management </a></div>
-  </li>
+    </li>
 	
 	<li>
 	<div class="link"><a href="user_management.html"><i class="fa fa-code"></i>User Management </a></div>
@@ -82,23 +82,23 @@
 			
 	<li>
 	<div class="link"><a href="all_books.html"><i class="fa fa-code"></i>All Books </a></div>
-	</li>
+	</li>  -->
 
 	<li>
 	<div class="link"><a href="<?=base_url()?>index.php/auth/logout"><i class="fa fa-sign-out"></i>Log out</a></div>
-	</li>
+	</li> 
 			
 			
 			
   
-  <li>
+     <!--   <li>
 			<div class="link"><i class="fa fa-globe"></i>Dropdown 2<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 			  <li><a href="#">Menu 1</a></li>
 			  <li><a href="#">Menu 2</a></li>
 			  <li><a href="#">Menu 3</a></li>
 			</ul>
-		  </li>
+		  </li>  -->
 		</ul>
 		
   

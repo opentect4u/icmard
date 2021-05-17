@@ -6,7 +6,7 @@
 			 <div class="card-body">
 				 
 				 
-				 <div class="titleSec">
+				<!-- <div class="titleSec">
 					 <button type="button" class="btn btn-primary">Export as CSV</button>
 				 <h2>Page Title</h2> 
 				 </div>
@@ -111,7 +111,7 @@
         </tfoot>
     </table>
 				</div>
-				</div>
+				</div>  -->
 			</div>
 			</div>
 		</div>
