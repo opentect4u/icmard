@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/apps_inner.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/res.css">
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 	
@@ -32,7 +32,7 @@
 
 <div class="loginmainDiv">
   <div class="loginBox">
-	<div class="adminLogo"><img src="<?//=base_url()?>assets/images/logoAdmin.png" alt=""/><b>ICMRD</b></div>
+	<div class="adminLogo"><img src="<?=base_url()?>assets/images/logo1.png" alt="" height="80" width="80" /><b></b></div>
   <span class="confirm-div" style="float:right; color:red;"><?php if(null != $this->session->flashdata('err_message')) 
                   { echo $this->session->flashdata('err_message');};?></span>
 	 <div class="fieldSec">

@@ -32,7 +32,7 @@
 
 <body>
 <nav class="navBar fixed-top">
-	<div class="float-left logo"><img src="<?//=base_url()?>assets/images/logo.png" alt=""/>ICMARD</div>
+	<div class="float-left logo"><img src="<?=base_url()?>assets/images/logo1.png" alt="" height="50" width="50"/></div>
 	<div class="float-left navRightSec">
 		
 		<ul class="topDate">
