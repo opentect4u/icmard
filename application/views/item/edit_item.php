@@ -45,7 +45,7 @@
 					
 <div class="form-group row">
     <div class="col-sm-12 btnSubmitSec">
-      <input type="submit" class="btn btn-info" id="submit" name="submit" value="Create">
+      <input type="submit" class="btn btn-info" id="submit" name="submit" value="Submit">
 <!--		<input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
     </div>
   </div>				

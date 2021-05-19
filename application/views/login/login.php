@@ -32,7 +32,7 @@
 
 <div class="loginmainDiv">
   <div class="loginBox">
-	<div class="adminLogo"><img src="<?=base_url()?>assets/images/logo1.png" alt="" height="80" width="80" /><b></b></div>
+	<div class="adminLogo"><img src="<?=base_url()?>assets/images/logo.png" alt="" height="80" width="80" /><b></b></div>
   <span class="confirm-div" style="float:right; color:red;"><?php if(null != $this->session->flashdata('err_message')) 
                   { echo $this->session->flashdata('err_message');};?></span>
 	 <div class="fieldSec">

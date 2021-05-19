@@ -111,9 +111,14 @@ img {
 .navRightSec{width: calc(100% - 255px); height: 76px; display: flex; align-items: center; padding: 0 15px; border-bottom: #fff solid 1px;
 	box-shadow: 4px 0px 7px 1px #d0d0d0;}
 .navRightSec button.navbar-toggler{border: none; color: #333; background: #fff; font-size: 21px; padding: 0;}
-.navRightSec .topDate{list-style-type: none; margin: 0 0 0 auto;}
-.navRightSec .topDate li{display: inline-block; font-size: 14px; font-weight: 400; margin-left: 15px; line-height: 16px; color: #333;}
+.navRightSec .topDate{list-style-type: none; margin:0 auto 0 0;}
+.navRightSec .topDate li{display: inline-block; font-size: 14px; font-weight: 400; margin-right: 15px; line-height: 16px; color: #333;}
 
+
+.navRightSec .topDateRight{}
+.navRightSec .topDateRight li{font-size: 14px; color: #333;}
+.navRightSec .topDateRight li a{color: #333; position: relative;}
+.navRightSec .topDateRight li .dropdown-menu a{font-size: 14px;}
 
 /*
 .navRightSec .navbar-nav.navbar-nav-right {margin-left: auto; display: flex; align-items: center;}
@@ -131,10 +136,12 @@ img {
 */
 
 .logo{
-/*	background: #0c9ffd; */
+	background: #282a3c; 
+/*
 	background: rgb(80,218,218);
     background: linear-gradient(90deg, rgba(80,218,218,1) 0%, rgba(33,181,181,1) 92%, rgba(3,134,134,1) 100%); 
-	padding: 15px ; text-align: center; width: 255px; border-bottom:#97d0ec solid 1px;}
+*/
+	padding: 15px ; text-align: center; width: 255px; border-bottom:#525677 solid 1px;}
 
 .page-body-wrapper {
     min-height: calc(100vh - 72px);
@@ -150,9 +157,11 @@ img {
 
 .sidebar {
     min-height: calc(100vh - 65px);
-/*    background: #0c9ffd;*/
+    background: #2c2e3e;
+/*
 	background: rgb(80,218,218);
     background: linear-gradient(90deg, rgba(80,218,218,1) 0%, rgba(33,181,181,1) 92%, rgba(3,134,134,1) 100%); 
+*/
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     padding: 0;
@@ -216,8 +225,20 @@ box-shadow: 0 0px 7px 1px #e1dfdf;
 }
 .card .card-body {padding: 1.25rem 1.75rem;	flex: 1 1 auto; padding: 1.25rem;}
 
-.card .card-body .titleSec{margin: 0 0 30px 0;}
-.card .card-body .titleSec h2{color:#2c2e3e; font-weight:400; font-size: 22px; margin:0; display: inline-block;} 
+.card .card-body .titleSec{
+/*	margin: 0 0 30px 0;*/
+	margin: -20px -20px 30px -20px;
+background: #2c2e3e;
+padding: 12px 12px 24px 12px;
+}
+.card .card-body .titleSec h2{
+/*	color:#2c2e3e; font-weight:400; font-size: 22px; margin:0; display: inline-block;*/
+	color: #fff;
+font-weight: 400;
+font-size: 22px;
+margin: 3px 0 0 0;
+display: inline-block;
+} 
 
 .card .card-body .titleSec .btn-primary{color: #fff; background-color: #0b99ce; border-color: #0b99ce; float: right; font-size: 15px; 
 	border-radius: 4px; line-height: 25px; padding: 6px 25px;}
@@ -299,8 +320,13 @@ max-width: 360px;
   transition: all 0.4s ease;
 }
 
-.accordion .link:hover{background: rgb(11,112,112);
-background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%, rgba(3,134,134,1) 100%);}
+.accordion .link:hover{
+/*
+ background: rgb(11,112,112);
+ background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%, rgba(3,134,134,1) 100%);
+*/
+ background: #1e2030;
+}
 
 .accordion .link a{color: #fff;}
 
@@ -326,8 +352,11 @@ background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%
 /*.accordion li.open .link { color: #b63b4d; }*/
 
 .accordion li.open .link {
+/*
 	background: rgb(11,112,112);
 background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%, rgba(3,134,134,1) 100%);
+*/
+	background: #1e2030;
 	color: #fff;
 }
 
@@ -347,11 +376,12 @@ background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%
 
 .submenu {
   display: none;
-  background: #096666;
+/*  background: #096666;*/
+  background: #181a28;
   font-size: 14px;
 }
 
-.submenu li { border-bottom:1px solid #218282; }
+.submenu li { border-bottom:1px solid #383a4d; }
 
 .submenu a {
   display: block;
@@ -365,7 +395,8 @@ background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%
 }
 
 .submenu a:hover {
-  background: #128c8c;
+/*  background: #128c8c;*/
+  background: #0f111c;
   color: #FFF;
 }
 

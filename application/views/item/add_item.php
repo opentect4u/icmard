@@ -5,7 +5,7 @@
 				 
 				 
 				 <div class="titleSec">
-				 <h2>Create Item</h2> 
+				 <h2>Add Item</h2> 
           <span class="confirm-div" style="float:right; color:green;">
             <?php if(null != $this->session->flashdata('msg')) 
                   { echo $this->session->flashdata('msg');};?>

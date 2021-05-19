@@ -6,7 +6,7 @@
 				 
 				 <div class="titleSec">
             <a href="<?=base_url()?>index.php/adm/add_customer"><button type="button" class="btn btn-primary">Add</button></a>
-				 <h2>Customer List</h2>
+				 <h2>Stakeholders List</h2>
                  <span class="confirm-div" style="float:right; color:green;">
             <?php if(null != $this->session->flashdata('msg')) 
                   { echo $this->session->flashdata('msg');};?>
@@ -22,8 +22,9 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>UIN</th>
-                <th>Option</th>
-                </tr>
+                <th>Edit</th>
+				<th>Delete</th>
+             </tr>
 				</thead>
 				<tbody>
 
@@ -38,7 +39,9 @@
                <!--  <td>Edinburgh</td>
                 <td>61</td> -->
                 <td><a href="<?=base_url()?>index.php/adm/edit_cust?id=<?php if(isset($cust->uin)){echo $cust->uin; }?>" data-toggle="tooltip" data-placement="bottom" title="Edit" class="deletCus"><i class="fa fa-edit menu-icon"></i></a>
-                                <a href="<?=base_url()?>index.php/adm/del_cust?id=<?php if(isset($cust->uin)){echo $cust->uin; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
+                               
+                </td>
+				<td> <a href="<?=base_url()?>index.php/adm/del_cust?id=<?php if(isset($cust->uin)){echo $cust->uin; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
                 </td>
             </tr>
             
@@ -49,10 +52,10 @@
             <tr>
                 <th>No</th>
                 <th>Name</th>
-               <th>UIN</th>
-               
-                 <th>Option</th>
-                </tr>
+                <th>UIN</th>
+                <th>Edit</th>
+				<th>Delete</th>
+            </tr>
         </tfoot>
     </table>
 				</div>

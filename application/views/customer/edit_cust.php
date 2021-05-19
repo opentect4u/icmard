@@ -5,7 +5,7 @@
 				 
 				 
 				 <div class="titleSec">
-				 <h2>Edit  Customer</h2> 
+				 <h2>Edit  Stakeholders</h2> 
           <span class="confirm-div" style="float:right; color:green;">
             <?php if(null != $this->session->flashdata('msg')) 
                   { echo $this->session->flashdata('msg');};?>
@@ -21,13 +21,7 @@
 					<input type="hidden" value="<?php if(isset($cust->uin)){echo $cust->uin; }?>" name="uin">
 					
 			<div class="form-group row">
-				<div class="col-sm-1">
-				  <label><b> Name</b></label>
-				</div>
 				
-				<div class="col-sm-6">
-				  <input type="text" class="form-control" placeholder="" name="cust_name" id="itemname" required value="<?php if(isset($cust->cust_name)){echo $cust->cust_name; }?>">
-				</div>
 				<div class="col-sm-1">
 				  <label><b> Type</b></label>
 				</div>
@@ -41,6 +35,16 @@
 					 
 				   </select>
 				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-1">
+				  <label><b> Name</b></label>
+				</div>
+				
+				<div class="col-sm-10">
+				  <input type="text" class="form-control" placeholder="" name="cust_name" id="itemname" required value="<?php if(isset($cust->cust_name)){echo $cust->cust_name; }?>">
+				</div>
+				
 			</div>
 
 		   <div class="form-group row">
@@ -67,9 +71,13 @@
 				  <label><b>Pin</b></label>
 				</div>
 				
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 				  <input type="text" class="form-control" placeholder="" name="pin" id="pin" required value="<?php if(isset($cust->pin)){echo $cust->pin; }?>">
 				</div>
+
+	   </div>
+	     <div class="form-group row">
+				
 				  <div class="col-sm-1">
 				  <label><b>GSTIN</b></label>
 				  </div>
@@ -82,16 +90,14 @@
 				 <div class="col-sm-3">
 				  <input type="text" class="form-control" placeholder="" name="pan" id="itemname" value="<?php if(isset($cust->pan)){echo $cust->pan; }?>">
 				  </div>
-	   </div>
-		<div class="form-group row">
-				<div class="col-sm-1">
+				  <div class="col-sm-1">
 				  <label><b>TAN</b></label>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 				  <input type="text" class="form-control" placeholder="" name="tan" id="itemname" value="<?php if(isset($cust->tan)){echo $cust->tan; }?>">
 				</div>
-				  
 	   </div>
+		
    
        <div class="form-group row" id="prop" style="display:none">
 			
@@ -109,19 +115,6 @@
 			  </div>
        </div>
     <div class="form-group row">
-			
-			  <div class="col-sm-1">
-			  <label><b>Mobile Number</b></label>
-			  </div>
-			 <div class="col-sm-2">
-			  <input type="text" class="form-control" placeholder="" name="mobile_no" id="itemname" value="<?php if(isset($cust->mobile_no)){echo $cust->mobile_no; }?>">
-			  </div>
-			  <div class="col-sm-1">
-			  <label><b>Email</b></label>
-			  </div>
-			 <div class="col-sm-3">
-			  <input type="text" class="form-control" placeholder="" name="email" id="itemname" value="<?php if(isset($cust->email)){echo $cust->email; }?>">
-			  </div>
 			  <div class="col-sm-1">
 			  <label><b>Company type</b></label>
 			  </div>
@@ -140,12 +133,28 @@
 			 
 			  </div>
         </div>
+		 <div class="form-group row">
+			
+			  <div class="col-sm-1">
+			  <label><b>Mobile Number</b></label>
+			  </div>
+			 <div class="col-sm-3">
+			  <input type="text" class="form-control" placeholder="" name="mobile_no" id="itemname" value="<?php if(isset($cust->mobile_no)){echo $cust->mobile_no; }?>">
+			  </div>
+			  <div class="col-sm-1">
+			  <label><b>Email</b></label>
+			  </div>
+			 <div class="col-sm-3">
+			  <input type="text" class="form-control" placeholder="" name="email" id="itemname" value="<?php if(isset($cust->email)){echo $cust->email; }?>">
+			  </div>
+			  
+        </div>
         <div class="form-group row">
 			
 			  <div class="col-sm-1">
 			  <label><b>Bank name</b></label>
 			  </div>
-			 <div class="col-sm-2">
+			 <div class="col-sm-3">
 			  <input type="text" class="form-control" placeholder="" name="bank_name" id="itemname" value="<?php if(isset($cust->bank_name)){echo $cust->bank_name; }?>">
 			  </div>
 			  <div class="col-sm-1">
@@ -154,19 +163,21 @@
 			 <div class="col-sm-3">
 			  <input type="text" class="form-control" placeholder="" name="branch_name" id="itemname" value="<?php if(isset($cust->branch_name)){echo $cust->branch_name; }?>">
 			  </div>
-			  <div class="col-sm-1">
+			 
+   </div>
+   <div class="form-group row">
+   
+            <div class="col-sm-1">
 			  <label><b>Ac no</b></label>
 			  </div>
 			 <div class="col-sm-3">
 			  <input type="text" class="form-control" placeholder="" name="ac_no" id="itemname" value="<?php if(isset($cust->ac_no)){echo $cust->ac_no; }?>">
 			  </div>
-   </div>
-   <div class="form-group row">
 			
 			  <div class="col-sm-1">
 			  <label><b>IFS code</b></label>
 			  </div>
-			 <div class="col-sm-2">
+			 <div class="col-sm-3">
 			  <input type="text" class="form-control" placeholder="" name="ifs_code" id="itemname" value="<?php if(isset($cust->ifs_code)){echo $cust->ifs_code; }?>">
 			  </div>
 			 

@@ -21,10 +21,9 @@
             <tr>
                 <th>No</th>
                 <th>Name</th>
-                <!-- <th>Email</th>
-                <th>Address</th> -->
-                <th>Option</th>
-                </tr>
+                <th>Edit</th>
+				<th>Delete</th>
+            </tr>
         </thead>
         <tbody>
 
@@ -38,7 +37,9 @@
                <!--  <td>Edinburgh</td>
                 <td>61</td> -->
                 <td><a href="<?=base_url()?>index.php/adm/edit_item?id=<?php if(isset($item->id)){echo $item->id; }?>" data-toggle="tooltip" data-placement="bottom" title="Edit" class="deletCus"><i class="fa fa-edit menu-icon"></i></a>
-                                <a href="<?=base_url()?>index.php/adm/del_item?id=<?php if(isset($item->id)){echo $item->id; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
+                           
+                </td>
+				<td><a href="<?=base_url()?>index.php/adm/del_item?id=<?php if(isset($item->id)){echo $item->id; }?>" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
                 </td>
             </tr>
             
@@ -47,11 +48,10 @@
 		</tbody>
         <tfoot>
             <tr>
-                <th>No</th>
+               <th>No</th>
                 <th>Name</th>
-               <!--  <th>Email</th>
-                <th>Address</th> -->
-                 <th>Option</th>
+                <th>Edit</th>
+				<th>Delete</th>
                 </tr>
         </tfoot>
     </table>
