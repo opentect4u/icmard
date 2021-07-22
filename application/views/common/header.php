@@ -123,11 +123,25 @@
 		<ul class="submenu">
 		  <li><a href="<?=base_url()?>index.php/adm">Item</a></li>
 		  <li><a href="<?=base_url()?>index.php/adm/cust_list">Stakeholders</a></li>
-		 
+      <!-- <li><a href="<?=base_url()?>index.php/adm/tenant_list">Tenant</a></li> -->
 		</ul>
      </li>
-			
+			<li>
+      <div class="link"><i class="fa fa-mobile"></i>Operations<i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+		  
+      <li><a href="<?=base_url()?>index.php/adm/tenant_list">Tenant</a></li>
+		</ul>
+      </li>
+      <li>
+      <div class="link"><i class="fa fa-mobile"></i>Reports<i class="fa fa-chevron-down"></i></div>
+    <ul class="submenu">
+		  
+      <li><a href="<?=base_url()?>index.php/report/stk_stmt">Tenant Details</a></li>
+		</ul>
+      </li>
 		<li>
+    
 	<div class="link"><a href="<?=base_url()?>index.php/auth/logout"><i class="fa fa-sign-out"></i>Log out</a></div>
 	</li> 	
 			

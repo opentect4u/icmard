@@ -182,7 +182,125 @@ class Adm extends CI_Controller {
        
     }
     /// **** End Code For Delete Item  *********** //
+    public function del_tenant()
+    {
+        $where = array(
 
+            'id' => $this->input->get('id')
+
+        );
+
+            $this->Master->f_delete('md_tenant', $where);
+             //For notification storing message
+            $this->session->set_flashdata('msg', 'Successfully deleted!');
+            //  alert('Successfully deleted!');
+            redirect("adm/tenant_list");   
+    }
+
+//*********************/Tenant View************************//
+    public function tenant_list()
+    {
+        $data['customer']  =  $this->Master->f_get_particulars("md_tenant", NULL, NULL, 0);
+        $this->load->view('common/header');
+        $this->load->view('tenant/tenant_list',$data);
+        $this->load->view('common/footer');
+    }
+
+    //*********************/Add Tenant Details************************//
+    public function add_tenant()
+    {
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                 //    $row = $this->db->get_where('md_item', array('item_name' => $this->input->post('item_name')))->num_rows();
+                //     $uin = $this->Master->f_get_particulars("md_tenant",array("ifnull(MAX(uin),9999999) uin"),NULL, 1);
+			       $uid = $uin->uin+1;
+			   
+               $data_array = array(
+			   
+				// "uin"              =>  $uid, 
+                "name"            =>  $this->input->post('t_name'),
+				"floor_no"        =>  $this->input->post('floor_no'),
+				"room_no"         =>  $this->input->post('room_no'),
+				"agree_st_dt"     =>  $this->input->post('agree_st_dt'),
+				"agree_end_dt"    =>  $this->input->post('agree_end_dt'),
+				"covd_area"       =>  $this->input->post('covd_area'),
+				"rent_per_sqrt"   =>  $this->input->post('rent_per_sqrt'),
+				"rent_per_mnth"   =>  $this->input->post('rent_per_mnth'),
+                "created_by"      =>  $this->session->userdata('user_name'),
+                "created_dt"      =>  date('Y-m-d H:i:s')
+
+                );
+
+                        $this->Master->f_insert('md_tenant', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Added!');
+                        // alert('Successfully Added!');
+                        // redirect('adm/add_tenant');
+                        redirect('adm/tenant_list');
+            }else{
+               
+                 $this->load->view('common/header');
+                 $select        = array("uin","cust_name");
+                 $where  =   array(
+ 
+                     'cust_type'     => 'T');
+                     
+                 $data['tenantdtls']   = $this->Master->f_get_particulars('md_customer',$select,$where,0);
+                //  echo $this->db->last_query();
+                //  exit();
+                 $this->load->view('tenant/add_tenant',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_tenant()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+
+                "name"            =>  $this->input->post('t_name'),
+				"floor_no"        =>  $this->input->post('floor_no'),
+				"room_no"         =>  $this->input->post('room_no'),
+				"agree_st_dt"     =>  $this->input->post('agree_st_dt'),
+				"agree_end_dt"    =>  $this->input->post('agree_end_dt'),
+				"covd_area"       =>  $this->input->post('covd_area'),
+				"rent_per_sqrt"   =>  $this->input->post('rent_per_sqrt'),
+				"rent_per_mnth"   =>  $this->input->post('rent_per_mnth'),
+                "modified_by"      =>  $this->session->userdata('user_name'),
+                "modified_dt"      =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('id' => $this->input->post('id') );
+  
+                        $this->Master->f_edit('md_tenant', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+                        // alert('Successfully Updated!');
+                        // redirect('adm/edit_tenant?id='.$this->input->post('id'));
+                        redirect('adm/tenant_list');
+
+            }else{
+
+                $where   =  array('id' => $this->input->get('id') );
+
+                $data['cust']  =  $this->Master->f_get_particulars("md_tenant", NULL, $where, 1);
+                // echo $this->db->last_query();
+                // exit;
+                $this->load->view('common/header');
+                $this->load->view('tenant/edit_tenant',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
 
 
     /// Start Code For Listing  Customer    On 12/05/2021    ///
