@@ -16,17 +16,30 @@
 				 </div>
 				 
 				<div class="row">
-					 <div class="col-sm-6"> 
+					 <div class="col-sm-12"> 
 				<form  action ="<?=base_url()?>index.php/adm/edit_item" method="post">
   <input type="hidden" value="<?php if(isset($item->id)){echo $item->id; }?>" name="id">
 					
+
+          
   <div class="form-group row">
-    
-    <div class="col-sm-10">
+  <div class="col-sm-1">
+				  <label><b>Category</b></label>
+				</div>
+  <div class="col-sm-6">
+      <input type="text" class="form-control"  name="catg" value="<?php if(isset($item->catg)){echo $item->catg; }?>" readonly>
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <div class="col-sm-1">
+				  <label><b>Item</b></label>
+				</div>
+    <div class="col-sm-6">
       <input type="text" class="form-control" placeholder="enter Item name" name="item_name" value="<?php if(isset($item->item_name)){echo $item->item_name; }?>">
     </div>
   </div>
-   <div class="form-group row">
+   <!-- <div class="form-group row">
     
     <div class="col-sm-4">
      <input type="checkbox" id="license" name="license" value="1" <?php if(isset($item->license) && $item->license ==1 ){echo "checked"; }?>>
@@ -41,7 +54,7 @@
     <input type="checkbox" id="amc" name="amc" value="1" <?php if(isset($item->amc) && $item->amc ==1 ){echo "checked"; }?>>
     <b>AMC</b>
     </div>
-  </div>
+  </div> -->
 					
 <div class="form-group row">
     <div class="col-sm-12 btnSubmitSec">

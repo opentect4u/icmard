@@ -121,6 +121,7 @@
 	  <li>
 		<div class="link"><i class="fa fa-mobile"></i>Master<i class="fa fa-chevron-down"></i></div>
 		<ul class="submenu">
+    <li><a href="<?=base_url()?>index.php/adm/itemcatg_list">Item Category</a></li>
 		  <li><a href="<?=base_url()?>index.php/adm">Item</a></li>
 		  <li><a href="<?=base_url()?>index.php/adm/cust_list">Stakeholders</a></li>
       <!-- <li><a href="<?=base_url()?>index.php/adm/tenant_list">Tenant</a></li> -->

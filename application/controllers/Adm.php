@@ -59,12 +59,12 @@ class Adm extends CI_Controller {
                 }
 
                $data_array = array(
-
+                  "catg"        => $this->input->post('catg'),
                 "item_name"     =>  $this->input->post('item_name'),
 
-                "license"       =>  $license,
-                "Insurance"     =>  $Insurance,
-                "amc"           =>  $amc,
+                // "license"       =>  $license,
+                // "Insurance"     =>  $Insurance,
+                // "amc"           =>  $amc,
                 "created_by"    =>  $this->session->userdata('user_name'),
                 "created_dt"    =>  date('Y-m-d H:i:s')
 
@@ -75,8 +75,8 @@ class Adm extends CI_Controller {
                     //For notification storing message
                     $this->session->set_flashdata('msg', 'Item Already Exist!');
 
-                    redirect('adm/add_item');
-
+                     redirect('adm/add_item');
+                    //redirect('adm');
 
                      }else{
 
@@ -84,14 +84,18 @@ class Adm extends CI_Controller {
                         //For notification storing message
                         $this->session->set_flashdata('msg', 'Successfully added!');
 
-                        redirect('adm/add_item');
+                        //redirect('adm/add_item');
+                        redirect('adm');
 
                      }
 
             }else{
 
                  $this->load->view('common/header');
-                 $this->load->view('item/add_item');
+                 $data['catgdtls']   = $this->Master->f_get_particulars('md_catg',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit;
+                 $this->load->view('item/add_item',$data);
                  $this->load->view('common/footer');
 
             }
@@ -131,11 +135,11 @@ class Adm extends CI_Controller {
 
                 "item_name"     =>  $this->input->post('item_name'),
 
-                "license"       =>  $license,
-                "Insurance"     =>  $Insurance,
-                "amc"           =>  $amc,
-                "created_by"    =>  $this->session->userdata('user_name'),
-                "created_dt"    =>  date('Y-m-d H:i:s')
+                // "license"       =>  $license,
+                // "Insurance"     =>  $Insurance,
+                // "amc"           =>  $amc,
+                "modified_by"    =>  $this->session->userdata('user_name'),
+                "modified_dt"    =>  date('Y-m-d H:i:s')
 
                 );
                $where   =  array('id' => $this->input->post('id') );
@@ -145,7 +149,8 @@ class Adm extends CI_Controller {
                         //For notification storing message
                         $this->session->set_flashdata('msg', 'Successfully Updated!');
 
-                        redirect('adm/edit_item?id='.$this->input->post('id'));
+                        // redirect('adm/edit_item?id='.$this->input->post('id'));
+                        redirect('adm');
 
             }else{
 
@@ -177,11 +182,159 @@ class Adm extends CI_Controller {
             $this->session->set_flashdata('msg', 'Successfully deleted!');
 
             redirect("adm");
+       
+    }
+    /// **** End Code For Delete Item  *********** //
+
+
+    public function itemcatg_list()
+    {
+        $data['itemcatg']  =  $this->Master->f_get_particulars("md_catg", NULL, NULL, 0);
+        $this->load->view('common/header');
+        $this->load->view('itemcatg/itemcatg_list',$data);
+        $this->load->view('common/footer');
+    }
+
+
+
+
+    public function add_itemcatg()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+
+                $row = $this->db->get_where('md_catg', array('category' => $this->input->post('category')))->num_rows();
+                // if( 1 == $this->input->post('license') ){
+                //     $license = 1;
+                // }else{
+                //     $license = 0;
+                // }
+
+                //  if( 1 == $this->input->post('Insurance') ){
+                //     $Insurance = 1;
+                // }else{
+                //     $Insurance = 0;
+                // }
+
+                //  if( 1 == $this->input->post('amc') ){
+                //     $amc = 1;
+                // }else{
+                //     $amc = 0;
+                // }
+
+               $data_array = array(
+
+                "category"     =>  $this->input->post('catg'),
+
+                // "license"       =>  $license,
+                // "Insurance"     =>  $Insurance,
+                // "amc"           =>  $amc,
+                "created_by"    =>  $this->session->userdata('user_name'),
+                "created_dt"    =>  date('Y-m-d H:i:s')
+
+                );
+
+                    if($row >0){
+
+                    //For notification storing message
+                    $this->session->set_flashdata('msg', 'Item Category Already Exist!');
+
+                    redirect('adm/add_itemcatg');
+
+
+                     }else{
+
+                        $this->Master->f_insert('md_catg', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully added!');
+
+                        redirect('adm/itemcatg_list');
+
+                     }
+
+            }else{
+ 
+                 $this->load->view('common/header');
+               
+                 $this->load->view('itemcatg/add_itemcatg');
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_itemcatg()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+
+               $data_array = array(
+
+                "category"     =>  $this->input->post('category'),
+                "modified_by"    =>  $this->session->userdata('user_name'),
+                "modified_dt"    =>  date('Y-m-d H:i:s')
+
+                );
+                $where = array(
+
+                    'sl_no' => $this->input->post('sl_no')
+        
+                );
+
+
+                   
+                        $this->Master->f_edit('md_catg', $data_array, $where);
+                        // echo $this->db->last_query();
+                        // exit();
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+
+                        // redirect('adm/edit_itemcatg?sl_no='.$this->input->post('sl_no'));
+                        redirect('adm/itemcatg_list');
+            }else{
+
+                $where   =  array('sl_no' => $this->input->get('sl_no') );
+
+                $data['item']  =  $this->Master->f_get_particulars("md_catg", NULL, $where, 1);
+
+                $this->load->view('common/header');
+                $this->load->view('itemcatg/edit_itemcatg',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+   
+
+    public function del_itemcatg()
+    {
+
+        // echo "hi";
+        // exit;
+        $where = array(
+
+            'sl_no' => $this->input->get('sl_no')
+
+        );
+
+            $this->Master->f_delete('md_catg', $where);
+             echo $this->db->last_query();
+             exit;
+             //For notification storing message
+            $this->session->set_flashdata('msg', 'Successfully deleted!');
+
+            redirect('adm/itemcatg_list');
 
       
        
     }
-    /// **** End Code For Delete Item  *********** //
+
     public function del_tenant()
     {
         $where = array(
@@ -191,6 +344,8 @@ class Adm extends CI_Controller {
         );
 
             $this->Master->f_delete('md_tenant', $where);
+            // echo $this->db->last_query();
+            // exit();
              //For notification storing message
             $this->session->set_flashdata('msg', 'Successfully deleted!');
             //  alert('Successfully deleted!');
