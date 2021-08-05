@@ -19,33 +19,7 @@
        
 					 <div class="col-sm-12"> 
 				<form  action ="<?=base_url()?>index.php/adm/add_item" method="post" id="form">
-        <div class="form-group row">
-				<div class="col-sm-1">
-				  <label><b> Category</b></label>
-				</div>
-        <div class="col-sm-6">
-				   <select name="catg" class="form-control required" id="catg" required>
-
-						<option value="">Select</option>
-
-						<?php
-
-							foreach($catgdtls as $catg){
-
-						?>
-
-							<option value="<?php echo $catg->category;?>"><?php echo $catg->category;?></option>
-
-						<?php
-
-							}
-
-						?>     
-
-						</select>
-				</div>
-			</div>
-					
+        
   <div class="form-group row">
                 <div class="col-sm-1">
 				  <label><b>Name</b></label>

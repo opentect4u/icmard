@@ -40,26 +40,26 @@ class Adm extends CI_Controller {
 
 
                 $row = $this->db->get_where('md_item', array('item_name' => $this->input->post('item_name')))->num_rows();
-                if( 1 == $this->input->post('license') ){
-                    $license = 1;
-                }else{
-                    $license = 0;
-                }
+                // if( 1 == $this->input->post('license') ){
+                //     $license = 1;
+                // }else{
+                //     $license = 0;
+                // }
 
-                 if( 1 == $this->input->post('Insurance') ){
-                    $Insurance = 1;
-                }else{
-                    $Insurance = 0;
-                }
+                //  if( 1 == $this->input->post('Insurance') ){
+                //     $Insurance = 1;
+                // }else{
+                //     $Insurance = 0;
+                // }
 
-                 if( 1 == $this->input->post('amc') ){
-                    $amc = 1;
-                }else{
-                    $amc = 0;
-                }
+                //  if( 1 == $this->input->post('amc') ){
+                //     $amc = 1;
+                // }else{
+                //     $amc = 0;
+                // }
 
                $data_array = array(
-                  "catg"        => $this->input->post('catg'),
+                //   "catg"        => $this->input->post('catg'),
                 "item_name"     =>  $this->input->post('item_name'),
 
                 // "license"       =>  $license,
@@ -113,23 +113,23 @@ class Adm extends CI_Controller {
 
          if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-                if( 1 == $this->input->post('license') ){
-                    $license = 1;
-                }else{
-                    $license = 0;
-                }
+                // if( 1 == $this->input->post('license') ){
+                //     $license = 1;
+                // }else{
+                //     $license = 0;
+                // }
 
-                 if( 1 == $this->input->post('Insurance') ){
-                    $Insurance = 1;
-                }else{
-                    $Insurance = 0;
-                }
+                //  if( 1 == $this->input->post('Insurance') ){
+                //     $Insurance = 1;
+                // }else{
+                //     $Insurance = 0;
+                // }
 
-                 if( 1 == $this->input->post('amc') ){
-                    $amc = 1;
-                }else{
-                    $amc = 0;
-                }
+                //  if( 1 == $this->input->post('amc') ){
+                //     $amc = 1;
+                // }else{
+                //     $amc = 0;
+                // }
 
                $data_array = array(
 
@@ -185,6 +185,170 @@ class Adm extends CI_Controller {
        
     }
     /// **** End Code For Delete Item  *********** //
+
+    public function stkitem_list()
+	{
+        $data['stkitems']  =  $this->Master->f_get_particulars("md_stk_item ", NULL, NULL, 0);
+        $this->load->view('common/header');
+		$this->load->view('stkitem/item_list',$data);
+        $this->load->view('common/footer');
+	}
+
+    public function del_stkitem()
+    {
+
+        // echo "hi";
+        // exit;
+        $where = array(
+
+            'id' => $this->input->get('id')
+
+        );
+
+            $this->Master->f_delete('md_stk_item', $where);
+            //  echo $this->db->last_query();
+            //  exit;
+             //For notification storing message
+            $this->session->set_flashdata('msg', 'Successfully deleted!');
+
+            redirect('adm/stkitem_list');
+
+      
+       
+    }
+    public function add_stkitem()
+    {
+
+// echo 'hi';
+// exit;
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+
+                $row = $this->db->get_where('md_stk_item', array('item_name' => $this->input->post('item_name')))->num_rows();
+                // if( 1 == $this->input->post('license') ){
+                //     $license = 1;
+                // }else{
+                //     $license = 0;
+                // }
+
+                //  if( 1 == $this->input->post('Insurance') ){
+                //     $Insurance = 1;
+                // }else{
+                //     $Insurance = 0;
+                // }
+
+                //  if( 1 == $this->input->post('amc') ){
+                //     $amc = 1;
+                // }else{
+                //     $amc = 0;
+                // }
+
+               $data_array = array(
+                  "catg"        => $this->input->post('catg'),
+                "item_name"     =>  $this->input->post('item_name'),
+
+                // "license"       =>  $license,
+                // "Insurance"     =>  $Insurance,
+                // "amc"           =>  $amc,
+                "created_by"    =>  $this->session->userdata('user_name'),
+                "created_dt"    =>  date('Y-m-d H:i:s')
+
+                );
+
+                    if($row >0){
+
+                    //For notification storing message
+                    $this->session->set_flashdata('msg', 'Item Already Exist!');
+
+                     redirect('adm/add_stkitem');
+                    //redirect('adm');
+
+                     }else{
+
+                        $this->Master->f_insert('md_stk_item', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully added!');
+
+                        //redirect('adm/add_item');
+                        redirect('adm/stkitem_list');
+
+                     }
+
+            }else{
+
+                 $this->load->view('common/header');
+                 $data['catgdtls']   = $this->Master->f_get_particulars('md_catg',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit;
+                 $this->load->view('stkitem/add_item',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_stkitem()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                // if( 1 == $this->input->post('license') ){
+                //     $license = 1;
+                // }else{
+                //     $license = 0;
+                // }
+
+                //  if( 1 == $this->input->post('Insurance') ){
+                //     $Insurance = 1;
+                // }else{
+                //     $Insurance = 0;
+                // }
+
+                //  if( 1 == $this->input->post('amc') ){
+                //     $amc = 1;
+                // }else{
+                //     $amc = 0;
+                // }
+
+               $data_array = array(
+
+                "item_name"     =>  $this->input->post('item_name'),
+
+                // "license"       =>  $license,
+                // "Insurance"     =>  $Insurance,
+                // "amc"           =>  $amc,
+                "modified_by"    =>  $this->session->userdata('user_name'),
+                "modified_dt"    =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('id' => $this->input->post('id') );
+
+                   
+                        $this->Master->f_edit('md_stk_item', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+
+                        // redirect('adm/edit_item?id='.$this->input->post('id'));
+                        redirect('adm/stkitem_list');
+
+            }else{
+
+                $where   =  array('id' => $this->input->get('id') );
+
+                $data['item']  =  $this->Master->f_get_particulars("md_stk_item", NULL, $where, 1);
+
+                $this->load->view('common/header');
+                $this->load->view('stkitem/edit_item',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+
 
 
     public function itemcatg_list()
@@ -382,6 +546,11 @@ class Adm extends CI_Controller {
 				"covd_area"       =>  $this->input->post('covd_area'),
 				"rent_per_sqrt"   =>  $this->input->post('rent_per_sqrt'),
 				"rent_per_mnth"   =>  $this->input->post('rent_per_mnth'),
+                "water_chrg"      => $this->input->post('water_chrg'),
+                "electric_chrg"   => $this->input->post('electric_chrg'),
+                 "gst_rt"         => $this->input->post('gst_rt'),
+                 "cgst"           => $this->input->post('cgst'),
+                 "sgst"           => $this->input->post('sgst'),
                 "created_by"      =>  $this->session->userdata('user_name'),
                 "created_dt"      =>  date('Y-m-d H:i:s')
 
@@ -428,6 +597,11 @@ class Adm extends CI_Controller {
 				"covd_area"       =>  $this->input->post('covd_area'),
 				"rent_per_sqrt"   =>  $this->input->post('rent_per_sqrt'),
 				"rent_per_mnth"   =>  $this->input->post('rent_per_mnth'),
+                "water_chrg"      => $this->input->post('water_chrg'),
+                "electric_chrg"   => $this->input->post('electric_chrg'),
+                 "gst_rt"         => $this->input->post('gst_rt'),
+                 "cgst"           => $this->input->post('cgst'),
+                 "sgst"           => $this->input->post('sgst'),
                 "modified_by"      =>  $this->session->userdata('user_name'),
                 "modified_dt"      =>  date('Y-m-d H:i:s')
 

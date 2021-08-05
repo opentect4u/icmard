@@ -22,14 +22,14 @@
 					
 
           
-  <div class="form-group row">
+  <!-- <div class="form-group row">
   <div class="col-sm-1">
 				  <label><b>Category</b></label>
 				</div>
   <div class="col-sm-6">
       <input type="text" class="form-control"  name="catg" value="<?php if(isset($item->catg)){echo $item->catg; }?>" readonly>
     </div>
-    </div>
+    </div> -->
 
     <div class="form-group row">
     <div class="col-sm-1">

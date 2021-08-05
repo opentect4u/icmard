@@ -108,10 +108,58 @@
 				 <div class="col-sm-4">
 				  <input type="text" class="form-control" placeholder="" name="rent_per_mnth" id="rent_per_mnth">
 				  </div>
-				  
+				  <div class="col-sm-1">
+			  <label><b>GST Rate</b></label>
+			</div>
+			
+			<div class="col-sm-4">
+			  <input type="text" class="form-control" placeholder="" name="gst_rt" id="gst_rt">
+			</div> 
 	   </div>
    
-					
+	   <div class="form-group row">
+			<div class="col-sm-1">
+			  <label><b>Water Charge</b></label>
+			</div>
+			
+			<div class="col-sm-4">
+			  <input type="text" class="form-control" placeholder="" name="water_chrg" id="water_chrg">
+			</div>
+			<div class="col-sm-1">
+			  <label><b>Electric Charge</b></label>
+			</div>
+			
+			<div class="col-sm-4">
+			  <input type="text" class="form-control" placeholder="" name="electric_chrg" id="electric_chrg">
+			</div>
+			
+		   </div>
+		   <div class="form-group row">
+		   <div class="col-sm-1">
+			  <label><b>Car Parking Charge</b></label>
+			</div>
+			
+			<div class="col-sm-9">
+			  <input type="text" class="form-control" placeholder="" name="car_park" id="car_park">
+			</div>
+			</div>	
+		   <div class="form-group row">
+			<div class="col-sm-1">
+			  <label><b>CGST</b></label>
+			</div>
+			
+			<div class="col-sm-4">
+			  <input type="text" class="form-control" placeholder="" name="cgst" id="cgst">
+			</div>
+			
+			<div class="col-sm-1">
+			  <label><b>SGST</b></label>
+			</div>
+			
+			<div class="col-sm-4">
+			  <input type="text" class="form-control" placeholder="" name="sgst" id="sgst">
+			</div>
+		   </div>			
 	<div class="form-group row">
 		<div class="col-sm-12 btnSubmitSec">
 		  <input type="submit" class="btn btn-info" id="submit" name="submit" value="Submit">
