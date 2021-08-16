@@ -145,6 +145,21 @@ class Master extends CI_Model {
 
     }
 
+	public function f_get_amc_dtls(){
+        // $user_id    = $this->session->userdata('login')->user_id;
+        
 
+    $data = $this->db->query("select a.id,a.comp_id,b.item_name,
+                             a.frm_dt,a.to_dt,a.total
+                            from  md_amc a, md_item b
+                            where a.item = b.id
+                            order by a.frm_dt"
+                                );
+                                
+
+     return $data->result();
+    
+        
+    }
 
 }

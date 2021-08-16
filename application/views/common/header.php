@@ -133,15 +133,22 @@
     <ul class="submenu">
 		  
       <li><a href="<?=base_url()?>index.php/adm/tenant_list">Tenant</a></li>
+      <li><a href="<?=base_url()?>index.php/adm/amc_list">AMC</a></li>
+      <li><a href="<?=base_url()?>index.php/adm/lic_list">Licence</a></li>
+      <li><a href="<?=base_url()?>index.php/adm/insu_list">Insurance</a></li>
 		</ul>
+      </li>
+  
       </li>
       <li>
       <div class="link"><i class="fa fa-mobile"></i>Reports<i class="fa fa-chevron-down"></i></div>
     <ul class="submenu">
 		  
       <li><a href="<?=base_url()?>index.php/report/stk_stmt">Tenant Details</a></li>
+      <li><a href="<?=base_url()?>index.php/report/amc_stmt">AMC Details</a></li>
 		</ul>
       </li>
+      
 		<li>
     
 	<div class="link"><a href="<?=base_url()?>index.php/auth/logout"><i class="fa fa-sign-out"></i>Log out</a></div>

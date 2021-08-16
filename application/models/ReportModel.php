@@ -13,6 +13,17 @@ class ReportModel extends CI_Model {
         return $query->result();
     }
 
+    public function f_get_amc($from_dt,$to_dt){
+        $query  = $this->db->query("select b.cust_name ,c.item_name,a.item_serial,a.instl_loc,a.frm_dt,a.to_dt,
+                                    a.amc_chrg,a.cgst,a.sgst,a.total
+                                    from md_amc a,md_customer b,md_item c
+                                    where    a.frm_dt between '$from_dt' and '$to_dt' 
+                                    and a.comp_id=b.uin
+                                    and a.item=c.id
+                                    order by a.to_dt");
+
+        return $query->result();
+    }
 
 
 

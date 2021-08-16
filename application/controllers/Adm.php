@@ -349,8 +349,6 @@ class Adm extends CI_Controller {
     }
 
 
-
-
     public function itemcatg_list()
     {
         $data['itemcatg']  =  $this->Master->f_get_particulars("md_catg", NULL, NULL, 0);
@@ -358,8 +356,6 @@ class Adm extends CI_Controller {
         $this->load->view('itemcatg/itemcatg_list',$data);
         $this->load->view('common/footer');
     }
-
-
 
 
     public function add_itemcatg()
@@ -498,6 +494,419 @@ class Adm extends CI_Controller {
       
        
     }
+
+    public function insu_list()
+    {
+        $select	=	array("a.id","b.item_name",
+        "a.frm_dt","a.to_dt"
+    
+    );
+	$where	=	array(
+
+        "a.item = b.id"	=>	NULL
+
+    );
+    // $data['dr_notes']    = $this->DrcrnoteModel->f_select("tdf_dr_cr_note a,mm_ferti_soc b,mm_company_dtls c ",$select,$where,0);
+        $data['customer']  =  $this->Master->f_get_particulars("md_insu a, md_item b", $select,$where, 0);
+        $this->load->view('common/header');
+        $this->load->view('insu/insu_list',$data);
+        $this->load->view('common/footer');
+    }
+
+
+    public function add_insu()
+    {
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                 //    $row = $this->db->get_where('md_item', array('item_name' => $this->input->post('item_name')))->num_rows();
+                //     $uin = $this->Master->f_get_particulars("md_tenant",array("ifnull(MAX(uin),9999999) uin"),NULL, 1);
+			    //    $uid = $uin->uin+1;
+			   
+               $data_array = array(
+			   
+				//  "id"                =>  $id, 
+               
+				"item"               =>  $this->input->post('item'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+                "to_dt"              =>  $this->input->post('to_dt'),
+                "remarks"           =>  $this->input->post('remarks'),
+                // "rnw_to"              =>  $this->input->post('rnw_to'),
+				"auth_person"        =>  $this->input->post('auth_person'),
+                "created_by"         =>  $this->session->userdata('user_name'),
+                "created_dt"         =>  date('Y-m-d H:i:s')
+
+                );
+
+                        $this->Master->f_insert('md_insu', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Added!');
+                        // alert('Successfully Added!');
+                        // redirect('adm/add_tenant');
+                        redirect('adm/insu_list');
+            }else{
+               
+                 $this->load->view('common/header');
+                //  $select        = array("uin","cust_name");
+                //  $where  =   array(
+ 
+                //      'cust_type'     => 'V');
+                     
+                //  $data['tenantdtls']   = $this->Master->f_get_particulars('md_customer',$select,$where,0);
+                 $data['itemdtls']   = $this->Master->f_get_particulars('md_item',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit();
+                 $this->load->view('insu/add_insu',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_insu()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+
+                "item"               =>  $this->input->post('item'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+                // "to_dt"              =>  $this->input->post('to_dt'),
+                "remarks"           =>  $this->input->post('remarks'),
+                // "rnw_to"              =>  $this->input->post('rnw_to'),
+				"auth_person"        =>  $this->input->post('auth_person'),
+               
+                "modified_by"      =>  $this->session->userdata('user_name'),
+                "modified_dt"      =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('id' => $this->input->post('id') );
+  
+                        $this->Master->f_edit('md_insu', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+                        // alert('Successfully Updated!');
+                        // redirect('adm/edit_tenant?id='.$this->input->post('id'));
+                        redirect('adm/insu_list');
+
+            }else{
+
+                $where   =  array('id' => $this->input->get('id') );
+
+                $data['cust']  =  $this->Master->f_get_particulars("md_insu", NULL, $where, 1);
+                $data['item']  =  $this->Master->f_get_particulars("md_item", NULL, NULL, 0);
+                // echo $this->db->last_query();
+                // exit;
+                $this->load->view('common/header');
+                $this->load->view('insu/edit_insu',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+
+    public function del_insu()
+    {
+        $where = array(
+
+            'id' => $this->input->get('id')
+
+        );
+        $this->Master->f_delete('md_insu', $where);
+        // echo $this->db->last_query();
+        // exit();
+         //For notification storing message
+        $this->session->set_flashdata('msg', 'Successfully deleted!');
+        //  alert('Successfully deleted!');
+        redirect("adm/insu_list");   
+}
+
+    public function lic_list()
+    {
+        $select	=	array("a.id","b.item_name",
+        "a.frm_dt","a.to_dt"
+    
+    );
+	$where	=	array(
+
+        "a.item = b.id"	=>	NULL
+
+    );
+    // $data['dr_notes']    = $this->DrcrnoteModel->f_select("tdf_dr_cr_note a,mm_ferti_soc b,mm_company_dtls c ",$select,$where,0);
+        $data['customer']  =  $this->Master->f_get_particulars("md_licence a, md_item b", $select,$where, 0);
+        $this->load->view('common/header');
+        $this->load->view('lic/lic_list',$data);
+        $this->load->view('common/footer');
+    }
+
+    public function add_lic()
+    {
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                 //    $row = $this->db->get_where('md_item', array('item_name' => $this->input->post('item_name')))->num_rows();
+                //     $uin = $this->Master->f_get_particulars("md_tenant",array("ifnull(MAX(uin),9999999) uin"),NULL, 1);
+			    //    $uid = $uin->uin+1;
+			   
+               $data_array = array(
+			   
+				//  "id"                =>  $id, 
+               
+				"item"               =>  $this->input->post('item'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+                "to_dt"              =>  $this->input->post('to_dt'),
+                "rnw_from"           =>  $this->input->post('rnw_from'),
+                "rnw_to"              =>  $this->input->post('rnw_to'),
+				"auth_person"        =>  $this->input->post('auth_person'),
+                "created_by"         =>  $this->session->userdata('user_name'),
+                "created_dt"         =>  date('Y-m-d H:i:s')
+
+                );
+
+                        $this->Master->f_insert('md_licence', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Added!');
+                        // alert('Successfully Added!');
+                        // redirect('adm/add_tenant');
+                        redirect('adm/lic_list');
+            }else{
+               
+                 $this->load->view('common/header');
+                //  $select        = array("uin","cust_name");
+                //  $where  =   array(
+ 
+                //      'cust_type'     => 'V');
+                     
+                //  $data['tenantdtls']   = $this->Master->f_get_particulars('md_customer',$select,$where,0);
+                 $data['itemdtls']   = $this->Master->f_get_particulars('md_item',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit();
+                 $this->load->view('lic/add_lic',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+
+    public function edit_lic()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+
+                "item"               =>  $this->input->post('item'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+                "rnw_from"           =>  $this->input->post('rnw_from'),
+                "rnw_to"             =>  $this->input->post('rnw_to'),
+				"auth_person"        =>  $this->input->post('auth_person'),
+                "modified_by"        =>  $this->session->userdata('user_name'),
+                "modified_dt"        =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('id' => $this->input->post('id') );
+  
+                        $this->Master->f_edit('md_licence', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+                        // alert('Successfully Updated!');
+                        // redirect('adm/edit_tenant?id='.$this->input->post('id'));
+                        redirect('adm/lic_list');
+
+            }else{
+
+                $where   =  array('id' => $this->input->get('id') );
+
+                $data['cust']  =  $this->Master->f_get_particulars("md_licence", NULL, $where, 1);
+                $data['item']  =  $this->Master->f_get_particulars("md_item", NULL, NULL, 0);
+                // echo $this->db->last_query();
+                // exit;
+                $this->load->view('common/header');
+                $this->load->view('lic/edit_lic',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+
+    public function del_lic()
+    {
+        $where = array(
+
+            'id' => $this->input->get('id')
+
+        );
+        $this->Master->f_delete('md_licence', $where);
+        // echo $this->db->last_query();
+        // exit();
+         //For notification storing message
+        $this->session->set_flashdata('msg', 'Successfully deleted!');
+        //  alert('Successfully deleted!');
+        redirect("adm/lic_list");   
+}
+
+    public function amc_list()
+    {
+        $select	=	array("a.id","a.comp_id","b.cust_name",
+        "a.frm_dt","a.to_dt","a.total"
+    
+    );
+	$where	=	array(
+
+        "a.comp_id = b.uin"	=>	NULL
+
+    );
+    // $data['dr_notes']    = $this->DrcrnoteModel->f_select("tdf_dr_cr_note a,mm_ferti_soc b,mm_company_dtls c ",$select,$where,0);
+        // $data['customer']  =  $this->Master->f_get_particulars("md_amc a, md_customer b", $select,$where, 0);
+       // f_get_amc_dtls();
+       $data['customer']  =  $this->Master->f_get_amc_dtls();
+        $this->load->view('common/header');
+        $this->load->view('amc/amc_list',$data);
+        $this->load->view('common/footer');
+    }
+
+    public function add_amc()
+    {
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                 //    $row = $this->db->get_where('md_item', array('item_name' => $this->input->post('item_name')))->num_rows();
+                //     $uin = $this->Master->f_get_particulars("md_tenant",array("ifnull(MAX(uin),9999999) uin"),NULL, 1);
+			    //    $uid = $uin->uin+1;
+			   
+               $data_array = array(
+			   
+				//  "id"                =>  $id, 
+                "comp_id"            =>  $this->input->post('comp_id'),
+				"item"               =>  $this->input->post('item'),
+                "item_serial"        =>  $this->input->post('item_serial'),
+				"instl_loc"          =>  $this->input->post('instl_loc'),
+				"instl_dt"           =>  $this->input->post('instl_dt'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+				"period"             =>  $this->input->post('period'),
+				"amc_chrg"           =>  $this->input->post('amc_chrg'),
+                "gst_rt"             =>  $this->input->post('gst_rt'),
+                "cgst"               =>  $this->input->post('cgst'),
+                "sgst"               =>  $this->input->post('sgst'),
+                "total"              =>  $this->input->post('total'),
+                "remarks"            =>  $this->input->post('remarks'),
+                "created_by"         =>  $this->session->userdata('user_name'),
+                "created_dt"         =>  date('Y-m-d H:i:s')
+
+                );
+
+                        $this->Master->f_insert('md_amc', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Added!');
+                        // alert('Successfully Added!');
+                        // redirect('adm/add_tenant');
+                        redirect('adm/amc_list');
+            }else{
+               
+                 $this->load->view('common/header');
+                 $select        = array("uin","cust_name");
+                 $where  =   array(
+ 
+                     'cust_type in ("V","C")'     => NULL
+                 );
+                     
+                 $data['tenantdtls']   = $this->Master->f_get_particulars('md_customer',$select,$where,0);
+                //    echo $this->db->last_query();
+                //  exit();
+                 $data['itemdtls']   = $this->Master->f_get_particulars('md_item',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit();
+                 $this->load->view('amc/add_amc',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_amc()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+
+                "comp_id"            =>  $this->input->post('comp_id'),
+				"item"               =>  $this->input->post('item'),
+                "item_serial"        =>  $this->input->post('item_serial'),
+				"instl_loc"          =>  $this->input->post('instl_loc'),
+				"instl_dt"           =>  $this->input->post('instl_dt'),
+				"frm_dt"             =>  $this->input->post('frm_dt'),
+				"to_dt"              =>  $this->input->post('to_dt'),
+				"period"             =>  $this->input->post('period'),
+				"amc_chrg"           =>  $this->input->post('amc_chrg'),
+                "gst_rt"             =>  $this->input->post('gst_rt'),
+                "cgst"               =>  $this->input->post('cgst'),
+                "sgst"               =>  $this->input->post('sgst'),
+                "total"              =>  $this->input->post('total'),
+                "remarks"            =>  $this->input->post('remarks'),
+                "modified_by"      =>  $this->session->userdata('user_name'),
+                "modified_dt"      =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('id' => $this->input->post('id') );
+  
+                        $this->Master->f_edit('md_amc', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+                        // alert('Successfully Updated!');
+                        // redirect('adm/edit_tenant?id='.$this->input->post('id'));
+                        redirect('adm/amc_list');
+
+            }else{
+
+                $where   =  array('id' => $this->input->get('id') );
+
+                $data['cust']  =  $this->Master->f_get_particulars("md_amc", NULL, $where, 1);
+                $data['item']  =  $this->Master->f_get_particulars("md_item", NULL, NULL, 0);
+                $data['custdtls']  =  $this->Master->f_get_particulars("md_customer", NULL, NULL, 0);
+                // echo $this->db->last_query();
+                // exit;
+                $this->load->view('common/header');
+                $this->load->view('amc/edit_amc',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function del_amc()
+    {
+        $where = array(
+
+            'id' => $this->input->get('id')
+
+        );
+        $this->Master->f_delete('md_amc', $where);
+        // echo $this->db->last_query();
+        // exit();
+         //For notification storing message
+        $this->session->set_flashdata('msg', 'Successfully deleted!');
+        //  alert('Successfully deleted!');
+        redirect("adm/amc_list");   
+}
 
     public function del_tenant()
     {
