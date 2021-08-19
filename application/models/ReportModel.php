@@ -25,6 +25,27 @@ class ReportModel extends CI_Model {
         return $query->result();
     }
 
+    public function f_get_lic($from_dt,$to_dt){
+        $query  = $this->db->query("select c.item_name,a.item,a.frm_dt,a.to_dt,
+                                    a.rnw_from,a.rnw_to,a.auth_person
+                                    from md_licence a,md_item c
+                                    where    a.frm_dt between '$from_dt' and '$to_dt' 
+                                    and a.item=c.id
+                                    order by a.to_dt");
 
+        return $query->result();
+    }
+
+    
+    public function f_get_insu($from_dt,$to_dt){
+        $query  = $this->db->query("select c.item_name,a.item,a.frm_dt,a.to_dt,
+                                   a.remarks ,a.auth_person
+                                    from md_insu a,md_item c
+                                    where    a.frm_dt between '$from_dt' and '$to_dt' 
+                                    and a.item=c.id
+                                    order by a.to_dt");
+
+        return $query->result();
+    }
 
 }

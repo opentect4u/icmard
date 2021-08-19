@@ -146,6 +146,8 @@
 		  
       <li><a href="<?=base_url()?>index.php/report/stk_stmt">Tenant Details</a></li>
       <li><a href="<?=base_url()?>index.php/report/amc_stmt">AMC Details</a></li>
+      <li><a href="<?=base_url()?>index.php/report/lic_stmt">Licence Details</a></li>
+      <li><a href="<?=base_url()?>index.php/report/insu_stmt">Insurance Details</a></li>
 		</ul>
       </li>
       
