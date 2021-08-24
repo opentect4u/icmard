@@ -161,5 +161,21 @@ class Master extends CI_Model {
     
         
     }
+    public function f_get_stockin_dtls(){
+        // $user_id    = $this->session->userdata('login')->user_id;
+        
+
+    $data = $this->db->query("select a.sl_no,a.inventry_no,b.item_name,
+                             a.pur_dt,a.total
+                            from  td_stockin a, md_stk_item b
+                            where a.item = b.id
+                            order by a.pur_dt"
+                                );
+                                
+
+     return $data->result();
+    
+        
+    }
 
 }

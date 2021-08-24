@@ -211,3 +211,22 @@ tr:hover {background-color: #f5f5f5;}
             </div>
             
         </div>
+        <script>
+   $('#example').dataTable({
+    destroy: true,
+   searching: false,ordering: false,paging: false,
+
+dom: 'Bfrtip',
+buttons: [
+   {
+extend: 'excelHtml5',
+title: 'ICMARD INSURANCE REPORT',
+text: 'Export to excel'
+//Columns to export
+// exportOptions: {
+//    columns: [0, 1, 2, 3]
+// }
+   }
+]
+   });
+</script>

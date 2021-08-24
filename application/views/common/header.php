@@ -136,6 +136,7 @@
       <li><a href="<?=base_url()?>index.php/adm/amc_list">AMC</a></li>
       <li><a href="<?=base_url()?>index.php/adm/lic_list">Licence</a></li>
       <li><a href="<?=base_url()?>index.php/adm/insu_list">Insurance</a></li>
+      <li><a href="<?=base_url()?>index.php/adm/stockin_list">Stock IN</a></li>
 		</ul>
       </li>
   

@@ -759,20 +759,164 @@ class Adm extends CI_Controller {
         redirect("adm/lic_list");   
 }
 
+
+///*******************************Stock In************** */
+public function stockin_list()
+    {
+    
+       $data['customer']  =  $this->Master->f_get_stockin_dtls();
+        $this->load->view('common/header');
+        $this->load->view('stockin/stockin_list',$data);
+        $this->load->view('common/footer');
+    }
+
+    public function add_stockin()
+    {
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+			   
+				//  "id"                =>  $id, 
+                // "comp_id"            =>  $this->input->post('comp_id'),
+				"item"               =>  $this->input->post('item'),
+                "inventry_no"        =>  $this->input->post('inventry_no'),
+				"vendor"             =>  $this->input->post('vendor'),
+				"pur_dt"             =>  $this->input->post('pur_dt'),
+				"inv_no"             =>  $this->input->post('inv_no'),
+				"challan_no"         =>  $this->input->post('challan_no'),
+				"amt"                =>  $this->input->post('amt'),
+                "gst_rt"             =>  $this->input->post('gst_rt'),
+                "cgst"               =>  $this->input->post('cgst'),
+                "sgst"               =>  $this->input->post('sgst'),
+                "total"              =>  $this->input->post('total'),
+                // "remarks"            =>  $this->input->post('remarks'),
+                "stock"              =>  $this->input->post('stock'),
+                "created_by"         =>  $this->session->userdata('user_name'),
+                "created_dt"         =>  date('Y-m-d H:i:s')
+
+                );
+
+                        $this->Master->f_insert('td_stockin', $data_array);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Added!');
+                        // alert('Successfully Added!');
+                        // redirect('adm/add_tenant');
+                        redirect('adm/stockin_list');
+            }else{
+               
+                 $this->load->view('common/header');
+                 $select        = array("uin","cust_name");
+                 $where  =   array(
+ 
+                     'cust_type in ("V")'     => NULL
+                 );
+                     
+                 $data['tenantdtls']   = $this->Master->f_get_particulars('md_customer',$select,$where,0);
+                //    echo $this->db->last_query();
+                //  exit();
+                 $data['itemdtls']   = $this->Master->f_get_particulars('md_stk_item',NULL,NULL,0);
+                //  echo $this->db->last_query();
+                //  exit();
+                 $this->load->view('stockin/add_stockin',$data);
+                 $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    public function edit_stockin()
+    {
+
+
+         if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+               $data_array = array(
+
+                "item"               =>  $this->input->post('item'),
+                "inventry_no"        =>  $this->input->post('inventry_no'),
+				"vendor"             =>  $this->input->post('vendor'),
+				"pur_dt"             =>  $this->input->post('pur_dt'),
+				"inv_no"             =>  $this->input->post('inv_no'),
+				"challan_no"         =>  $this->input->post('challan_no'),
+				"amt"                =>  $this->input->post('amt'),
+                "gst_rt"             =>  $this->input->post('gst_rt'),
+                "cgst"               =>  $this->input->post('cgst'),
+                "sgst"               =>  $this->input->post('sgst'),
+                "total"              =>  $this->input->post('total'),
+                // "remarks"            =>  $this->input->post('remarks'),
+                "stock"              =>  $this->input->post('stock'),
+                "modified_by"      =>  $this->session->userdata('user_name'),
+                "modified_dt"      =>  date('Y-m-d H:i:s')
+
+                );
+               $where   =  array('sl_no' => $this->input->post('id') );
+  
+                        $this->Master->f_edit('td_stockin', $data_array, $where);
+                        //For notification storing message
+                        $this->session->set_flashdata('msg', 'Successfully Updated!');
+                        // alert('Successfully Updated!');
+                        // redirect('adm/edit_tenant?id='.$this->input->post('id'));
+                        redirect('adm/stockin_list');
+
+            }else{
+
+                $where   =  array('sl_no' => $this->input->get('id') );
+
+                $data['cust']  =  $this->Master->f_get_particulars("td_stockin", NULL, $where, 1);
+                // echo $this->db->last_query();
+                // exit;
+                $data['item']  =  $this->Master->f_get_particulars("md_stk_item", NULL, NULL, 0);
+                $data['custdtls']  =  $this->Master->f_get_particulars("md_customer", NULL, NULL, 0);
+                
+                $this->load->view('common/header');
+                $this->load->view('stockin/edit_stockin',$data);
+                $this->load->view('common/footer');
+
+            }
+
+      
+    }
+
+    
+
+
+    public function del_stockin()
+    {
+        $where = array(
+
+            'sl_no' => $this->input->get('id')
+
+        );
+        $this->Master->f_delete('td_stockin', $where);
+        // echo $this->db->last_query();
+        // exit();
+         //For notification storing message
+        $this->session->set_flashdata('msg', 'Successfully deleted!');
+        //  alert('Successfully deleted!');
+        redirect("adm/stockin_list");   
+}
+
+//********************************************************/
+public function del_amc()
+    {
+        $where = array(
+
+            'id' => $this->input->get('id')
+
+        );
+        $this->Master->f_delete('md_amc', $where);
+        // echo $this->db->last_query();
+        // exit();
+         //For notification storing message
+        $this->session->set_flashdata('msg', 'Successfully deleted!');
+        //  alert('Successfully deleted!');
+        redirect("adm/amc_list");   
+}
     public function amc_list()
     {
-        $select	=	array("a.id","a.comp_id","b.cust_name",
-        "a.frm_dt","a.to_dt","a.total"
     
-    );
-	$where	=	array(
-
-        "a.comp_id = b.uin"	=>	NULL
-
-    );
-    // $data['dr_notes']    = $this->DrcrnoteModel->f_select("tdf_dr_cr_note a,mm_ferti_soc b,mm_company_dtls c ",$select,$where,0);
-        // $data['customer']  =  $this->Master->f_get_particulars("md_amc a, md_customer b", $select,$where, 0);
-       // f_get_amc_dtls();
        $data['customer']  =  $this->Master->f_get_amc_dtls();
         $this->load->view('common/header');
         $this->load->view('amc/amc_list',$data);
@@ -860,7 +1004,7 @@ class Adm extends CI_Controller {
                 "cgst"               =>  $this->input->post('cgst'),
                 "sgst"               =>  $this->input->post('sgst'),
                 "total"              =>  $this->input->post('total'),
-                "remarks"            =>  $this->input->post('remarks'),
+                 "remarks"            =>  $this->input->post('remarks'),
                 "modified_by"      =>  $this->session->userdata('user_name'),
                 "modified_dt"      =>  date('Y-m-d H:i:s')
 
@@ -892,21 +1036,21 @@ class Adm extends CI_Controller {
       
     }
 
-    public function del_amc()
-    {
-        $where = array(
+//     public function del_amc()
+//     {
+//         $where = array(
 
-            'id' => $this->input->get('id')
+//             'id' => $this->input->get('id')
 
-        );
-        $this->Master->f_delete('md_amc', $where);
-        // echo $this->db->last_query();
-        // exit();
-         //For notification storing message
-        $this->session->set_flashdata('msg', 'Successfully deleted!');
-        //  alert('Successfully deleted!');
-        redirect("adm/amc_list");   
-}
+//         );
+//         $this->Master->f_delete('md_amc', $where);
+//         // echo $this->db->last_query();
+//         // exit();
+//          //For notification storing message
+//         $this->session->set_flashdata('msg', 'Successfully deleted!');
+//         //  alert('Successfully deleted!');
+//         redirect("adm/amc_list");   
+// }
 
     public function del_tenant()
     {
